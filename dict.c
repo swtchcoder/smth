@@ -21,7 +21,7 @@ int dict_find(dict_s* dict, char* key) {
     return -1;
 }
 
-void dict_set(dict_s* dict, char* key, char* value) {
+void dict_set(dict_s* dict, char* key, void* value) {
     int index = dict_find(dict, key);
     dict_entry_s* dict_entry = calloc(1, sizeof(dict_entry_s));
 
@@ -37,7 +37,7 @@ void dict_set(dict_s* dict, char* key, char* value) {
     dict_entry->value = value;
 }
 
-char* dict_get(dict_s* dict, char* key) {
+void* dict_get(dict_s* dict, char* key) {
     int index = dict_find(dict, key);
     if (index == -1) {
         return 0;
