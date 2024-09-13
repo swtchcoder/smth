@@ -4,14 +4,14 @@
 #include "dict.h"
 #include "list.h"
 
-dict_s* dict_new() {
-    dict_s* dict = calloc(1, sizeof(dict_s));
-    dict->entries = list_new(sizeof(dict_entry_s));
+dict_t* dict_new() {
+    dict_t* dict = calloc(1, sizeof(dict_t));
+    dict->entries = list_new(sizeof(dict_entry_t));
 
     return dict;
 }
 
-int dict_find(dict_s* dict, char* key) {
+int dict_find(dict_t* dict, char* key) {
     for (int i = 0; i< dict->entries->length; i++) {
         if (strcmp(key, (char*)list_get(dict->entries, i))) {
             return i;
@@ -21,9 +21,9 @@ int dict_find(dict_s* dict, char* key) {
     return -1;
 }
 
-void dict_set(dict_s* dict, char* key, void* value) {
+void dict_set(dict_t* dict, char* key, void* value) {
     int index = dict_find(dict, key);
-    dict_entry_s* dict_entry = calloc(1, sizeof(dict_entry_s));
+    dict_entry_t* dict_entry = calloc(1, sizeof(dict_entry_t));
 
     if (index == -1) {
         dict_entry->key = key;
@@ -33,21 +33,21 @@ void dict_set(dict_s* dict, char* key, void* value) {
         return;
     }
 
-    dict_entry = (dict_entry_s*)list_get(dict->entries, index);
+    dict_entry = (dict_entry_t*)list_get(dict->entries, index);
     dict_entry->value = value;
 }
 
-void* dict_get(dict_s* dict, char* key) {
+void* dict_get(dict_t* dict, char* key) {
     int index = dict_find(dict, key);
     if (index == -1) {
         return 0;
     }
 
-    dict_entry_s* dict_entry = (dict_entry_s*)list_get(dict->entries, index);
+    dict_entry_t* dict_entry = (dict_entry_t*)list_get(dict->entries, index);
     return dict_entry->value;
 }
 
-void dict_free(dict_s* dict) {
+void dict_free(dict_t* dict) {
     list_free(dict->entries);
     free(dict);
 }

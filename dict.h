@@ -5,17 +5,17 @@
 
 typedef struct {
     const char* key;
-    char* value;
-} dict_entry_s;
+    void* value;
+} dict_entry_t;
 
 typedef struct {
-    list_s* entries;
-} dict_s;
+    list_t* entries;
+} dict_t;
 
-dict_s* dict_new();
-int dict_find(dict_s* dict, char* key);
-void dict_set(dict_s* dict, char* key, void* value);
-void* dict_get(dict_s* dict, char* key);
-void dict_free(dict_s* dict);
+dict_t* dict_new();
+int dict_find(dict_t* dict, char* key);
+void dict_set(dict_t* dict, char* key, void* value);
+void* dict_get(dict_t* dict, char* key);
+void dict_free(dict_t* dict);
 
 #endif

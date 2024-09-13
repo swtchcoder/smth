@@ -11,16 +11,16 @@
 ```shell
 $ make
 ```
-This command will create a `main` binary in the project's root.
+This command will create a `main.out` binary in the project's root.
 
 ## Execution
 
 ```shell
-$ ./main
+$ ./main.out
 ```
 
 <br>
 
 ### Credits
 
-- [eztaah](https://github.com/eztaah) - Inspired me for `list.c`
+- [eztaah](https://github.com/eztaah) - Taught me C programming

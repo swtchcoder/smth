@@ -2,8 +2,8 @@
 
 #include "list.h"
 
-list_s* list_new(int element_size) {
-    list_s* list = calloc(1, sizeof(list_s));
+list_t* list_new(int element_size) {
+    list_t* list = calloc(1, sizeof(list_t));
     list->elements = 0;
     list->element_size = element_size;
     list->length = 0;
@@ -11,7 +11,7 @@ list_s* list_new(int element_size) {
     return list;
 }
 
-void list_append(list_s* list, void* element) {
+void list_append(list_t* list, void* element) {
     list->length++;
 
     if (list->length == 1) {
@@ -23,15 +23,15 @@ void list_append(list_s* list, void* element) {
     list->elements[list->length - 1] = element;
 }
 
-void* list_get(list_s* list, int index) {
+void* list_get(list_t* list, int index) {
     if (index < 0 || index >= list->length) {
-        return 0;
+        return NULL;
     }
 
     return list->elements[index];
 }
 
-void list_free(list_s* list) {
+void list_free(list_t* list) {
     for (int i = 0; i < list->length; i++) {
         free(list_get(list, i));
     }
