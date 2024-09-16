@@ -5,15 +5,14 @@
 #include "list.h"
 
 dict_t* dict_new() {
-    dict_t* dict = calloc(1, sizeof(dict_t));
-    dict->entries = list_new(sizeof(dict_entry_t));
+    dict_t* dict = list_new(sizeof(dict_entry_t));
 
     return dict;
 }
 
 int dict_find(dict_t* dict, char* key) {
-    for (int i = 0; i< dict->entries->length; i++) {
-        if (strcmp(key, (char*)list_get(dict->entries, i))) {
+    for (unsigned int i = 0; i< dict->length; i++) {
+        if (strcmp(key, (char*)list_get(dict, i))) {
             return i;
         }
     }
@@ -29,11 +28,11 @@ void dict_set(dict_t* dict, char* key, void* value) {
         dict_entry->key = key;
         dict_entry->value = value;
 
-        list_append(dict->entries, dict_entry);
+        list_append(dict, dict_entry);
         return;
     }
 
-    dict_entry = (dict_entry_t*)list_get(dict->entries, index);
+    dict_entry = (dict_entry_t*)list_get(dict, index);
     dict_entry->value = value;
 }
 
@@ -43,11 +42,11 @@ void* dict_get(dict_t* dict, char* key) {
         return 0;
     }
 
-    dict_entry_t* dict_entry = (dict_entry_t*)list_get(dict->entries, index);
+    dict_entry_t* dict_entry = (dict_entry_t*)list_get(dict, index);
     return dict_entry->value;
 }
 
 void dict_free(dict_t* dict) {
-    list_free(dict->entries);
+    list_free(dict);
     free(dict);
 }

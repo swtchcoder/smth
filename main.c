@@ -2,7 +2,7 @@
 
 #include "dict.h"
 
-int main(int argc, char** argv) {
+int main() {
     dict_t* dict = dict_new();
     dict_set(dict, "text", "Hello world!");
     

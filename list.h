@@ -3,13 +3,13 @@
 
 typedef struct {
     void** elements;
-    int element_size;
-    int length;
+    unsigned int element_size;
+    unsigned int length;
 } list_t;
 
-list_t* list_new(int element_size);
+list_t* list_new(unsigned int element_size);
 void list_append(list_t* list, void* element);
-void* list_get(list_t* list, int index);
+void* list_get(list_t* list, unsigned int index);
 void list_free(list_t* list);
 
 #endif

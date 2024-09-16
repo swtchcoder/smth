@@ -8,9 +8,7 @@ typedef struct {
     void* value;
 } dict_entry_t;
 
-typedef struct {
-    list_t* entries;
-} dict_t;
+typedef list_t dict_t;
 
 dict_t* dict_new();
 int dict_find(dict_t* dict, char* key);

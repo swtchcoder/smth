@@ -2,7 +2,7 @@
 
 #include "list.h"
 
-list_t* list_new(int element_size) {
+list_t* list_new(unsigned int element_size) {
     list_t* list = calloc(1, sizeof(list_t));
     list->elements = 0;
     list->element_size = element_size;
@@ -23,7 +23,7 @@ void list_append(list_t* list, void* element) {
     list->elements[list->length - 1] = element;
 }
 
-void* list_get(list_t* list, int index) {
+void* list_get(list_t* list, unsigned int index) {
     if (index < 0 || index >= list->length) {
         return NULL;
     }
@@ -32,7 +32,7 @@ void* list_get(list_t* list, int index) {
 }
 
 void list_free(list_t* list) {
-    for (int i = 0; i < list->length; i++) {
+    for (unsigned int i = 0; i < list->length; i++) {
         free(list_get(list, i));
     }
 
